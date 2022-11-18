@@ -93,7 +93,51 @@ namespace pryObregonIEFI
             get { return varTotalSaldos; }
         }
 
+        public void BusquedaCliente(Int32 variableCliente)
+        {
+            try
+            {
 
+                conexionBd.ConnectionString = varRutaAccesoBD;
+                conexionBd.Open();
+                comandoBd.Connection = conexionBd;
+
+                //Indicamos el tipo de comando
+                //Trae una tabla el comando
+                comandoBd.CommandType = CommandType.TableDirect;
+                comandoBd.CommandText = varTabla;
+
+                OleDbDataReader DR = comandoBd.ExecuteReader();
+
+
+                //Si hay filas en el DataReader entra el if
+                if (DR.HasRows)
+                {
+                    //Mientras hayan datos para leer en el Datareader
+                    while (DR.Read())
+                    {
+                        //si el dni coincide entonces muestra la informacion
+                        if (DR.GetInt32(2) == variableCliente)
+                        {
+                            varNombreCliente = DR.GetString(0);
+                            varApellidoCliente = DR.GetString(1);
+                            varDniCliente = DR.GetInt32(2);
+                            varBarrioCliente = DR.GetInt32(3);
+                            varDireccionCliente = DR.GetString(4);
+                            varActividadCliente = DR.GetInt32(5);
+                            varSaldoCliente = DR.GetDecimal(6);
+                        }
+                    }
+                }
+                conexionBd.Close();
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+
+        }
 
         public void ListarClientes(DataGridView dgvClientes)
         {
@@ -165,9 +209,64 @@ namespace pryObregonIEFI
 
         }
 
+        public void Modificar(Int32 Dni)
+        {
+            //instruccion sql                                                                                                             
+            string Sql = "UPDATE CLIENTES SET [BARRIO] = " + varBarrioCliente + ", [DIRECCION] = '" + varDireccionCliente + "', [ACTIVIDAD] = " + varActividadCliente + ", [SALDO] = " + varSaldoCliente + "  WHERE [DNI] = " + Dni + "";
+
+            conexionBd.ConnectionString = varRutaAccesoBD;
+            conexionBd.Open();
+            comandoBd.Connection = conexionBd;
+
+
+            //Se indica el tipo de comando, el tipo Text es para instrucciones sql
+            comandoBd.CommandType = CommandType.Text;
+
+            //Se pasa la instruccion sql al comando
+            comandoBd.CommandText = Sql;
+
+            //ejecuta el comando
+            comandoBd.ExecuteNonQuery();
+            conexionBd.Close();
+
+            MessageBox.Show("Cambios Guardados");
+        }
+
+        public void Eliminar(Int32 Dni)
+        {
+            try
+            {
+                //Instruccion sql
+                string Sql = "DELETE FROM CLIENTES WHERE (" + Dni + " = [DNI])";
+
+
+                conexionBd.ConnectionString = varRutaAccesoBD;
+                conexionBd.Open();
+                comandoBd.Connection = conexionBd;
+
+
+                comandoBd.CommandType = CommandType.Text;
+                comandoBd.CommandText = Sql;
+                comandoBd.ExecuteNonQuery();
+
+                conexionBd.Close();
+
+                MessageBox.Show("Cliente Eliminado");
+            }
+            catch (Exception mensaje)
+            {
+                MessageBox.Show(Convert.ToString(mensaje));
+            }
+
+
+
+
+        }
+
 
         public void Listar(DataGridView dgvGrilla)
         {
+            
 
             try
             {
@@ -244,105 +343,9 @@ namespace pryObregonIEFI
         }
 
 
-        public void BusquedaCliente(Int32 variableCliente)
-        {
-            try
-            {
+        
 
-                conexionBd.ConnectionString = varRutaAccesoBD;
-                conexionBd.Open();
-                comandoBd.Connection = conexionBd;
-
-                //Indicamos el tipo de comando
-                //Trae una tabla el comando
-                comandoBd.CommandType = CommandType.TableDirect;
-                comandoBd.CommandText = varTabla;
-
-                OleDbDataReader DR = comandoBd.ExecuteReader();
-
-
-                //Si hay filas en el DataReader entra el if
-                if (DR.HasRows)
-                {
-                    //Mientras hayan datos para leer en el Datareader
-                    while (DR.Read())
-                    {
-                        //si el dni coincide entonces muestra la informacion
-                        if (DR.GetInt32(2) == variableCliente)
-                        {
-                            varNombreCliente = DR.GetString(0);
-                            varApellidoCliente = DR.GetString(1);
-                            varDniCliente = DR.GetInt32(2);
-                            varBarrioCliente = DR.GetInt32(3);
-                            varDireccionCliente = DR.GetString(4);
-                            varActividadCliente = DR.GetInt32(5);
-                            varSaldoCliente = DR.GetDecimal(6);
-                        }
-                    }
-                }
-                conexionBd.Close();
-            }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(e.Message);
-            }
-
-        }
-
-        public void Modificar(Int32 Dni)
-        {
-            //instruccion sql                                                                                                             
-            string Sql = "UPDATE CLIENTES SET [BARRIO] = " + varBarrioCliente + ", [DIRECCION] = '" + varDireccionCliente + "', [ACTIVIDAD] = " + varActividadCliente + ", [SALDO] = " + varSaldoCliente + "  WHERE [DNI] = " + Dni + "";
-
-            conexionBd.ConnectionString = varRutaAccesoBD;
-            conexionBd.Open();
-            comandoBd.Connection = conexionBd;
-
-
-            //Se indica el tipo de comando, el tipo Text es para instrucciones sql
-            comandoBd.CommandType = CommandType.Text;
-
-            //Se pasa la instruccion sql al comando
-            comandoBd.CommandText = Sql;
-
-            //ejecuta el comando
-            comandoBd.ExecuteNonQuery();
-            conexionBd.Close();
-
-            MessageBox.Show("Cambios Guardados");
-        }
-
-        public void Eliminar(Int32 Dni)
-        {
-            try
-            {
-                //Instruccion sql
-                string Sql = "DELETE FROM CLIENTES WHERE (" + Dni + " = [DNI])";
-
-
-                conexionBd.ConnectionString = varRutaAccesoBD;
-                conexionBd.Open();
-                comandoBd.Connection = conexionBd;
-
-
-                comandoBd.CommandType = CommandType.Text;
-                comandoBd.CommandText = Sql;
-                comandoBd.ExecuteNonQuery();
-
-                conexionBd.Close();
-
-                MessageBox.Show("Cliente Eliminado");
-            }
-            catch (Exception mensaje)
-            {
-                MessageBox.Show(Convert.ToString(mensaje));
-            }
-
-
-
-
-        }
+        
 
         public void ListarActividad(Int32 Actividad, DataGridView dgvActividad)
         {
@@ -390,67 +393,7 @@ namespace pryObregonIEFI
 
 
         }
-        public void ReportarActividad(Int32 Actividad)
-        {
-
-            try
-            {
-
-                conexionBd.ConnectionString = varRutaAccesoBD;
-                conexionBd.Open();
-                comandoBd.Connection = conexionBd;
-
-                comandoBd.CommandType = CommandType.TableDirect;
-                comandoBd.CommandText = varTabla;
-
-
-                OleDbDataReader DR = comandoBd.ExecuteReader();
-
-                //StreamWriter para crear archivo de reportes, false para que lo cree muchas veces
-                StreamWriter reporteClientes = new StreamWriter("ReporteClientesActividad.csv", false);
-                reporteClientes.WriteLine("Listado de Clientes\n");
-                reporteClientes.WriteLine("DNI;Nombre;Apellido;Actividad");
-
-                Int32 varCantidadClientes = 0;
-
-                clsActividad objClaseActividad = new clsActividad();
-                string varActividad = "";
-
-
-                //Si hay filas en el DataReader entra el if
-                if (DR.HasRows)
-                {
-
-                    while (DR.Read())
-                    {
-                        if (Actividad == DR.GetInt32(5))//en la columna 5 esta el codigo-Actividad
-                        {
-                            varActividad = objClaseActividad.Buscar(DR.GetInt32(5));
-                            reporteClientes.Write(DR.GetInt32(2));
-                            reporteClientes.Write(";");
-                            reporteClientes.Write(DR.GetString(0));
-                            reporteClientes.Write(";");
-                            reporteClientes.Write(DR.GetString(1));
-                            reporteClientes.Write(";");
-                            reporteClientes.WriteLine(varActividad);
-                            varCantidadClientes++;
-                        }
-
-                    }
-
-                    reporteClientes.Write("\nCantidad de clientes:");
-                    reporteClientes.WriteLine(varCantidadClientes);
-                }
-                conexionBd.Close();
-                reporteClientes.Close();
-            }
-            catch (Exception mensaje)
-            {
-                MessageBox.Show(mensaje.Message);
-
-            }
-
-        }
+        
         
         public void ListarBarrio(Int32 Barrio, DataGridView dgvBarrio)
         {
@@ -497,132 +440,12 @@ namespace pryObregonIEFI
 
 
         }
-        public void ImprimirBarrio(PrintPageEventArgs reporte, Int32 varCodigoBarrio)
-        {
+        
 
-            try
-            {
-
-                Font TipoLetra = new Font("Arial", 11);
-                Font TipoLetra2 = new Font("Arial", 13);
-                Font Titulo = new Font("Arial", 20);
-                Font Subtitulo = new Font("Arial", 15);
-                Font Actividad = new Font("Arial", 16);
-
-
-
-                reporte.Graphics.DrawString("Listado Clientes por Barrios", Titulo, Brushes.Black, 250, 100);
-                reporte.Graphics.DrawString("DNI", Subtitulo, Brushes.Black, 100, 200);
-                reporte.Graphics.DrawString("Nombre", Subtitulo, Brushes.Black, 400, 200);
-                reporte.Graphics.DrawString("Apellido", Subtitulo, Brushes.Black, 700, 200);
-                reporte.Graphics.DrawString("Barrio:", Actividad, Brushes.Black, 100, 150);
-
-
-                Int32 varEspacioEntreLinea = 225;
-
-
-
-
-                conexionBd.ConnectionString = varRutaAccesoBD;
-                conexionBd.Open();
-                comandoBd.Connection = conexionBd;
-                comandoBd.CommandType = CommandType.TableDirect;
-                comandoBd.CommandText = varTabla;
-
-
-                OleDbDataReader DR = comandoBd.ExecuteReader();
-
-                clsBarrios objClaseBarrio = new clsBarrios();
-                string varBarrio = "";
-                Int32 varContadorClientes = 0;
-
-                if (DR.HasRows)
-                {
-                    while (DR.Read())
-                    {
-                        if (DR.GetInt32(3) == varCodigoBarrio)
-                        {
-                            varBarrio = objClaseBarrio.Buscar(DR.GetInt32(3));
-                            reporte.Graphics.DrawString(varBarrio, TipoLetra2, Brushes.Black, 198, 153);
-                            varContadorClientes++;
-                            //Nos permite imprimir una cadena de caracteres
-                            reporte.Graphics.DrawString(DR.GetInt32(2).ToString(), TipoLetra, Brushes.Black, 100, varEspacioEntreLinea);
-                            reporte.Graphics.DrawString(DR.GetString(0), TipoLetra, Brushes.Black, 400, varEspacioEntreLinea);
-                            reporte.Graphics.DrawString(DR.GetString(1), TipoLetra, Brushes.Black, 700, varEspacioEntreLinea);
-                            varEspacioEntreLinea = varEspacioEntreLinea + 20;
-                        }
-                    }
-                    reporte.Graphics.DrawString("Cantidad Clientes:" + "" + varContadorClientes, TipoLetra, Brushes.Black, 100, varEspacioEntreLinea + 20);
-                }
-                conexionBd.Close();
-            }
-            catch (Exception mensaje)
-            {
-                MessageBox.Show(mensaje.Message);
-            }
-
-
-        }
-
-        public void ReportarBarrio(Int32 CodigoBarrio)
-        {
-
-            try
-            {
-
-                conexionBd.ConnectionString = varRutaAccesoBD;
-                conexionBd.Open();
-                comandoBd.Connection = conexionBd;
-
-                comandoBd.CommandType = CommandType.TableDirect;
-                comandoBd.CommandText = varTabla;
-
-                OleDbDataReader DR = comandoBd.ExecuteReader();
-
-                StreamWriter reporteClientes = new StreamWriter("ReporteClientesBarrios.csv", false);
-
-                reporteClientes.WriteLine("Listado de Clientes\n");
-                reporteClientes.WriteLine("DNI;Nombre;Apellido;Barrio");
-
-                Int32 varCantidadClientes = 0;
-
-                clsBarrios objClaseBarrio = new clsBarrios();
-                string varBarrio = "";
-
-
-                //Si hay filas en el DataReader entra el if
-                if (DR.HasRows)
-                {
-
-                    while (DR.Read())
-                    {
-                        if (CodigoBarrio == DR.GetInt32(3))
-                        {
-                            varBarrio = objClaseBarrio.Buscar(DR.GetInt32(3));
-                            reporteClientes.Write(DR.GetInt32(2)); //dni
-                            reporteClientes.Write(";");
-                            reporteClientes.Write(DR.GetString(0)); //nombre
-                            reporteClientes.Write(";");
-                            reporteClientes.Write(DR.GetString(1)); //apellido
-                            reporteClientes.Write(";");
-                            reporteClientes.WriteLine(varBarrio);
-                            varCantidadClientes++;
-                        }
-
-                    }
-
-                    reporteClientes.Write("\nCantidad de clientes:");
-                    reporteClientes.WriteLine(varCantidadClientes);
-                }
-                conexionBd.Close();
-                reporteClientes.Close();
-            }
-            catch (Exception mensaje)
-            {
-                MessageBox.Show(mensaje.Message);
-
-            }
-
-        }
+        
+     
+        
     }
+
+
 }

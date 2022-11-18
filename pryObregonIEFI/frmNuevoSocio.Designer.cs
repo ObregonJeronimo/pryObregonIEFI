@@ -126,6 +126,7 @@
             this.lstBarrioCliente.Name = "lstBarrioCliente";
             this.lstBarrioCliente.Size = new System.Drawing.Size(116, 23);
             this.lstBarrioCliente.TabIndex = 24;
+            this.lstBarrioCliente.SelectedIndexChanged += new System.EventHandler(this.lstBarrioCliente_SelectedIndexChanged);
             // 
             // txtNombreCliente
             // 
@@ -235,6 +236,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Name = "frmNuevoSocio";
             this.Text = "Nuevo Socio";
+            this.Load += new System.EventHandler(this.frmNuevoSocio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

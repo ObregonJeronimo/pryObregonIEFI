@@ -89,6 +89,7 @@ namespace pryObregonIEFI
                 ModificarCliente.varActividadDelCliente = Convert.ToInt32(lstActividad.SelectedValue);
                 ModificarCliente.varSaldoDelCliente = Convert.ToInt32(mskSaldo.Text);
                 ModificarCliente.Modificar(SocioID);
+                Limpiar();
             }
             catch (Exception message)
             {
@@ -99,5 +100,29 @@ namespace pryObregonIEFI
             
             
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Int32 varDNI = Convert.ToInt32(txtDni.Text);
+            clsCliente objClaseCliente = new clsCliente();
+            objClaseCliente.Eliminar(varDNI);
+
+            
+
+            Limpiar();
+        }
+
+        public void Limpiar()
+        {
+            txtDni.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtDireccion.Text = "";
+            lstBarrio.SelectedIndex = -1;
+            lstActividad.SelectedIndex = -1;
+            mskSaldo.Text = "";
+        }
+
     }
+
 }

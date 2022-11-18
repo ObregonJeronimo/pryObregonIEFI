@@ -17,6 +17,16 @@ namespace pryObregonIEFI
             InitializeComponent();
         }
 
+        private void frmNuevoSocio_Load(object sender, EventArgs e)
+        {
+            clsBarrios objClaseBarrio = new clsBarrios();
+            objClaseBarrio.LlenarListaDesplegable(lstBarrioCliente);
+            lstBarrioCliente.SelectedIndex = -1;
+
+            clsActividad objClaseActividad = new clsActividad();
+            objClaseActividad.LlenarListaDesplegable(lstActividadCliente);
+            lstActividadCliente.SelectedIndex = -1;
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             clsCliente objClsCliente = new clsCliente();
@@ -42,9 +52,22 @@ namespace pryObregonIEFI
             txtNombreCliente.Focus();
         }
 
+        private void lstBarrioCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstBarrioCliente.SelectedIndex != -1 && lstActividadCliente.SelectedIndex != -1)
+            {
+                btnAgregar.Enabled = true;
+
+            }
+        }
+
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        
     }
+  
 }
