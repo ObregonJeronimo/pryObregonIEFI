@@ -12,9 +12,24 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -46,75 +61,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BD_ClientesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BD_ClientesDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="frmBuscarCliente.cs">
+    <Compile Include="clsActividad.cs" />
+    <Compile Include="clsBarrios.cs" />
+    <Compile Include="clsCliente.cs" />
+    <Compile Include="frmGestionSocio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBuscarCliente.Designer.cs">
-      <DependentUpon>frmBuscarCliente.cs</DependentUpon>
+    <Compile Include="frmGestionSocio.Designer.cs">
+      <DependentUpon>frmGestionSocio.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaDeUnCliente.cs">
+    <Compile Include="frmConsultaClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsultaDeUnCliente.Designer.cs">
-      <DependentUpon>frmConsultaDeUnCliente.cs</DependentUpon>
+    <Compile Include="frmConsultaClientes.Designer.cs">
+      <DependentUpon>frmConsultaClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaGrlAllClientes.cs">
+    <Compile Include="frmConsultaClientesPorBarrio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsultaGrlAllClientes.Designer.cs">
-      <DependentUpon>frmConsultaGrlAllClientes.cs</DependentUpon>
+    <Compile Include="frmConsultaClientesPorBarrio.Designer.cs">
+      <DependentUpon>frmConsultaClientesPorBarrio.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaGrlClientesCiudad.cs">
+    <Compile Include="frmConsultaClientePorActividad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsultaGrlClientesCiudad.Designer.cs">
-      <DependentUpon>frmConsultaGrlClientesCiudad.cs</DependentUpon>
+    <Compile Include="frmConsultaClientePorActividad.Designer.cs">
+      <DependentUpon>frmConsultaClientePorActividad.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaGrlClientesDeudores.cs">
+    <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsultaGrlClientesDeudores.Designer.cs">
-      <DependentUpon>frmConsultaGrlClientesDeudores.cs</DependentUpon>
+    <Compile Include="frmPrincipal.Designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frmNuevoSocio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmNuevoCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNuevoCliente.Designer.cs">
-      <DependentUpon>frmNuevoCliente.cs</DependentUpon>
+    <Compile Include="frmNuevoSocio.Designer.cs">
+      <DependentUpon>frmNuevoSocio.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmBuscarCliente.resx">
-      <DependentUpon>frmBuscarCliente.cs</DependentUpon>
+    <EmbeddedResource Include="frmGestionSocio.resx">
+      <DependentUpon>frmGestionSocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaDeUnCliente.resx">
-      <DependentUpon>frmConsultaDeUnCliente.cs</DependentUpon>
+    <EmbeddedResource Include="frmConsultaClientes.resx">
+      <DependentUpon>frmConsultaClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaGrlAllClientes.resx">
-      <DependentUpon>frmConsultaGrlAllClientes.cs</DependentUpon>
+    <EmbeddedResource Include="frmConsultaClientesPorBarrio.resx">
+      <DependentUpon>frmConsultaClientesPorBarrio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaGrlClientesCiudad.resx">
-      <DependentUpon>frmConsultaGrlClientesCiudad.cs</DependentUpon>
+    <EmbeddedResource Include="frmConsultaClientePorActividad.resx">
+      <DependentUpon>frmConsultaClientePorActividad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaGrlClientesDeudores.resx">
-      <DependentUpon>frmConsultaGrlClientesDeudores.cs</DependentUpon>
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmNuevoCliente.resx">
-      <DependentUpon>frmNuevoCliente.cs</DependentUpon>
+    <EmbeddedResource Include="frmNuevoSocio.resx">
+      <DependentUpon>frmNuevoSocio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,17 +129,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="BD_ClientesDataSet.xsc">
-      <DependentUpon>BD_ClientesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="BD_ClientesDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BD_ClientesDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="BD_ClientesDataSet.xss">
-      <DependentUpon>BD_ClientesDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,9 +143,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BD_Clientes.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
