@@ -310,7 +310,7 @@ namespace pryObregonIEFI
 
                         //Añade filas a la grilla tomando las posiciones de los campos de la tabla socios
                         dgvGrilla.Rows.Add(DR.GetInt32(2), DR.GetString(0), DR.GetString(1), varDetalleBarrio, DR.GetString(4), varDetalleActividad, DR.GetDecimal(6));
-                        ///////////////////////dni////////////nombre///////////apellido//////////detalle///////////direccion//////////detalle////////////sueldo/////////
+                        ///////////////////////dni////////////nombre///////////apellido//////////detalle///////////direccion//////////detalle////////////saldo/////////
                         
                         varCantidadClientes++;
                         varTotalSaldos = varTotalSaldos + DR.GetDecimal(6);

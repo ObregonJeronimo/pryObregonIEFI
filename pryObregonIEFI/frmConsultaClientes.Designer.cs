@@ -46,7 +46,7 @@
             this.lblTotalSaldos = new System.Windows.Forms.Label();
             this.txtCantidadClientes = new System.Windows.Forms.TextBox();
             this.txtTotalSaldos = new System.Windows.Forms.TextBox();
-            this.btnListarTotalClientes = new System.Windows.Forms.Button();
+            this.btnListar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaClientes)).BeginInit();
             this.SuspendLayout();
@@ -209,16 +209,16 @@
             this.txtTotalSaldos.Size = new System.Drawing.Size(115, 21);
             this.txtTotalSaldos.TabIndex = 20;
             // 
-            // btnListarTotalClientes
+            // btnListar
             // 
-            this.btnListarTotalClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListarTotalClientes.Location = new System.Drawing.Point(645, 257);
-            this.btnListarTotalClientes.Name = "btnListarTotalClientes";
-            this.btnListarTotalClientes.Size = new System.Drawing.Size(109, 48);
-            this.btnListarTotalClientes.TabIndex = 19;
-            this.btnListarTotalClientes.Text = "Listar";
-            this.btnListarTotalClientes.UseVisualStyleBackColor = true;
-            this.btnListarTotalClientes.Click += new System.EventHandler(this.btnListarTotalClientes_Click);
+            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.Location = new System.Drawing.Point(645, 257);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(109, 48);
+            this.btnListar.TabIndex = 19;
+            this.btnListar.Text = "Listar";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // btnVolver
             // 
@@ -240,7 +240,7 @@
             this.Controls.Add(this.lblTotalSaldos);
             this.Controls.Add(this.txtCantidadClientes);
             this.Controls.Add(this.txtTotalSaldos);
-            this.Controls.Add(this.btnListarTotalClientes);
+            this.Controls.Add(this.btnListar);
             this.Controls.Add(this.lblSaldoMenor);
             this.Controls.Add(this.lblPromedioSaldos);
             this.Controls.Add(this.lblSaldoMayor);
@@ -276,7 +276,7 @@
         private System.Windows.Forms.Label lblTotalSaldos;
         private System.Windows.Forms.TextBox txtCantidadClientes;
         private System.Windows.Forms.TextBox txtTotalSaldos;
-        private System.Windows.Forms.Button btnListarTotalClientes;
+        private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Button btnVolver;
     }
 }

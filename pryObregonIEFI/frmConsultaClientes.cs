@@ -17,7 +17,7 @@ namespace pryObregonIEFI
             InitializeComponent();
         }
 
-        private void btnListarTotalClientes_Click(object sender, EventArgs e)
+        private void btnListar_Click(object sender, EventArgs e)
         {
             clsCliente objMostrarGrilla = new clsCliente();
             objMostrarGrilla.Listar(dgvConsultaClientes);
